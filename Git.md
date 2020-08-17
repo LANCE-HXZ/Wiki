@@ -18,8 +18,9 @@ git init
 
 添加一些文件至/test后需要告知git添加哪些文件至仓库
 ```bash
-git add test.md     // 添加至缓存区，没有消息返回就是操作成功
+git add test.md     //  添加至缓存区，没有消息返回就是操作成功
 git add file2.txt file3.txt
+git add .           //  添加所有
 
 git commit -m "详细的修改说明"  //  提交到仓库
 ```
