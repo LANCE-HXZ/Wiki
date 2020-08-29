@@ -1,5 +1,16 @@
 # Git - 分布式版本控制系统
 
+## 目录
+- [安装](#安装)
+- [本地仓库](#本地仓库)
+- [远程仓库](#远程仓库)
+    - [创建](#创建SSHKey)
+    - [push fetch pull](#push提交变更到远程仓库)
+    - [从远程库删除某些文件但保留本地的文件](#从远程库删除某些文件但保留本地的文件)
+- [版本回退](#版本回退)
+
+
+
 ## 安装
 Ubuntu
 ```bash
@@ -50,9 +61,12 @@ git diff test.md    //  查看修改的文件中哪些部分被修改
 
 ## 远程仓库
 
-### 创建 SSH Key
-+ 在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人. 如果已经有了，可直接跳到下一步。如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
-`ssh-keygen -t rsa -C "youremail@example.com"`
+### 创建SSH_Key
++ 在用户主目录下，看看有没有.ssh目录，如果有，再看看这个目录下有没有id_rsa和id_rsa.pub这两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人  
+如果已经有了，可直接跳到下一步。如果没有，打开终端，创建SSH Key：
+    ```bash
+    ssh-keygen -t rsa -C "youremail@example.com"
+    ```
 + 登陆GitHub，打开“Account settings”，“SSH Keys”页面, 点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容
 + 免费 GitHub 上的内容将完全公开
 
@@ -66,32 +80,37 @@ git diff test.md    //  查看修改的文件中哪些部分被修改
 ### 创建远程仓库与本地关联
 + 登陆GitHub，右上角“Create a new repo”创建
 + 关联本地仓库, 参数分别是本地上为该远程仓库的命名, 默认为origin, 可定义为github等; 链接为对应仓库链接
-`git remote add <origin> <git@github.com:michaelliao/learngit.git>`
+```bash
+git remote add <origin> <git@github.com:michaelliao/learngit.git>
+```
 + 本地仓库推送到 origin 仓库的 master 分支, 第一次推送 master 分支时，加上了 -u 参数可以关联
-`git push -u origin master`
     - 第一次使用 Git 的 clone 或者 push 命令连接 GitHub 时，会得到一个 SSH 警告, 输入 yes 确认后就不再出现
 
+    ```bash
+    git push -u origin master
+    ```
+    
 
-### push 提交变更到远程仓库
-未指定参数时, 根据 HEAD 跟踪的分支确定 push 的目的地
+### push提交变更到远程仓库
+未指定参数时, 根据 HEAD 跟踪的分支确定 push 的目的地  
+切到本地仓库中的 <place> 分支, 获取所有的提交, 再到远程仓库 <remote> 中找到 <place> 分支, 
+将远程仓库中没有的提交记录都添加上去, 搞定之后告诉我
 ```bash
--/ 切到本地仓库中的 <place> 分支, 获取所有的提交, 再到远程仓库 <remote> 中找到 <place> 分支, 
-将远程仓库中没有的提交记录都添加上去, 搞定之后告诉我 -/
 git push <remote> <place>
-
-// 要同时为源和目的地指定 <place> 的话, "注意如果 <src> 传了个空值过去, 会删除该远程分支"
+```
+要同时为源和目的地指定 <place> 的话, "注意如果 <src> 传了个空值过去, 会删除该远程分支"
+```bash
 git push origin <src>:<dst>
 ```
 
-### fetch 从远程仓库下载本地仓库缺失的提交记录, 并更新远程分支指针
+### fetch从远程仓库下载本地仓库缺失的提交记录
+仅下载并更新远程分支指针, 不改变本地仓库的状态, 不会更新master分支
 ```bash
-// 仅下载, 并不改变本地仓库的状态, 不会更新master分支
 git fetch
 ```
 
-### pull 合并远程分支
-当你想要 push 时发现远程仓库在未来版本, 需要使自己的工作基于远程的提交后再 push
-
+### pull合并远程分支
+当你想要 push 时发现远程仓库在未来版本, 需要使自己的工作基于远程的提交后再 push  
 可以先 fetch 后再合并, 也可以直接 pull
 ```bash
 //  rebase 使你的提交树变得很干净, 所有的提交都在一条线上
