@@ -385,6 +385,7 @@ GitHub 使所有人共同参与开发成为可能, 在开源库上通过 Fork �
 
 ### .gitignore
 推送时, 忽略一些机密文件, 忽略一些编译自动生成的文件, 忽略缩略图文件等垃圾文件, 以及忽略自定义的某个文件或文件类型
+- 官方提供的各种类型工程的[基础 .gitignore 文件](https://github.com/github/gitignore)
 - 如果在 add 某个文件时发现无法添加, 有可能是 .gitignore 规则有问题
     - 可以查看是哪个规则限制了该文件
     ```bash
@@ -401,7 +402,7 @@ GitHub 使所有人共同参与开发成为可能, 在开源库上通过 Fork �
 ```bash
 git config --global alias.st status
 git config --global alias.co checkout
-git config --global alias.cm commit
+git config --global alias.cm 'commit -m'
 git config --global alias.br branch
 git config --global alias.unstage 'reset HEAD'
     //  git unstage test.py     //  即 git reset HEAD test.py   撤销暂存区的修改
