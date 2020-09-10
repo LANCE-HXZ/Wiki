@@ -4,6 +4,7 @@
 ### [VSCode - 文件编辑器](https://github.com/LANCE-HXZ/Wiki/wiki/VS-Code)
 ### [IKFast - 运动规划求解器](https://github.com/LANCE-HXZ/Wiki/wiki/IKFast)
 ### [Conda - 开源软件包管理系统和环境管理系统](https://github.com/LANCE-HXZ/Wiki/wiki/Conda)
+### [ssh - 远程登陆会话和安全外壳协议](https://github.com/LANCE-HXZ/Wiki/wiki/ssh)
 
 ### [Nvidia driver - 显卡驱动](https://github.com/LANCE-HXZ/Wiki/wiki/Nvidia_driver)
 
